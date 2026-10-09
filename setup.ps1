@@ -1,6 +1,8 @@
 # Builds Hey Jev for Windows: a venv with the packages, plus "Hey Jev" shortcuts in the Start menu and on the Desktop.
 # The shortcuts run the code straight from this folder. Run it again if you move the folder.
-#   powershell -ExecutionPolicy Bypass -File setup.ps1
+# It also has her start when you sign in; -NoStartup leaves that off.
+#   powershell -ExecutionPolicy Bypass -File setup.ps1 [-NoStartup]
+param([switch]$NoStartup)
 $ErrorActionPreference = "Stop"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $here
@@ -42,6 +44,13 @@ foreach ($dir in $targets) {
     $link.Save()
     Write-Host "Shortcut: $(Join-Path $dir 'Hey Jev.lnk')"
 }
+# Start when you sign in, the same as ticking Settings > Start when I sign in: minimised, and she says hello
+$on = if ($NoStartup) { "False" } else { "True" }
+& .venv\Scripts\python.exe -c "import winplatform; winplatform.set_start_with_windows($on)"
+if ($LASTEXITCODE -ne 0) { Write-Host "Couldn't change starting with Windows, see above. The Settings tab can do it too." }
+elseif ($NoStartup) { Write-Host "Hey Jev won't start by itself when you sign in." }
+else { Write-Host "Hey Jev will start when you sign in. To stop that, untick Settings > Start when I sign in." }
+
 Write-Host ""
 Write-Host "Done. Open Hey Jev from the Start menu or the Desktop."
 Write-Host "Logs: $env:LOCALAPPDATA\Hey Jev\Logs\Hey Jev.log"

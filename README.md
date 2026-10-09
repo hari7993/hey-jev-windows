@@ -346,7 +346,7 @@ A black pill at the bottom of the screen, Siri style: the Siri wave while she li
 
 ### Starting with Windows
 
-Settings > Start when I sign in (off until you tick it) adds Hey Jev to what Windows starts when you sign in, minimised to the taskbar. Then she welcomes you the way JARVIS welcomes Tony home in Iron Man 2, with the time and the weather: "Welcome home, Sam. It's 2:27 in the afternoon, 33 degrees and mostly clear outside. Anything you'd like me to do?" When you come back to the laptop after it was locked or asleep for a minute or more, it's "Welcome back, Sam.", with only what needs you: who messaged while you were away, the battery if it's under 30 percent and not charging, the C drive if it's nearly full. Just answer, no "Hey Jev" needed. The name and Say hello are in Settings too. It also shows in Task Manager > Startup apps.
+Setup turns on Settings > Start when I sign in, which adds Hey Jev to what Windows starts when you sign in, minimised to the taskbar. Then she welcomes you the way JARVIS welcomes Tony home in Iron Man 2, with the time and the weather: "Welcome home, Sam. It's 2:27 in the afternoon, 33 degrees and mostly clear outside. Anything you'd like me to do?" When you come back to the laptop after it was locked or asleep for a minute or more, it's "Welcome back, Sam.", with only what needs you: who messaged while you were away, the battery if it's under 30 percent and not charging, the C drive if it's nearly full. Just answer, no "Hey Jev" needed. The name and Say hello are in Settings too. It also shows in Task Manager > Startup apps.
 
 ### Teaching her your apps
 
@@ -377,7 +377,7 @@ In this folder:
 
     powershell -ExecutionPolicy Bypass -File setup.ps1
 
-That makes a `.venv` with the packages and puts a "Hey Jev" shortcut in the Start menu and on the Desktop. The shortcut runs the code straight from this folder. Run `setup.ps1` again if you move the folder.
+That makes a `.venv` with the packages and puts a "Hey Jev" shortcut in the Start menu and on the Desktop. It also has her start when you sign in: untick Settings > Start when I sign in to stop that, or run setup with `-NoStartup`. The shortcut runs the code straight from this folder. Run `setup.ps1` again if you move the folder.
 
 The first time it opens:
 
