@@ -1,5 +1,5 @@
 # Builds Hey Jev for Windows: a venv with the packages, plus "Hey Jev" shortcuts in the Start menu and on the Desktop.
-# The shortcuts run the code straight from this folder (like py2app -A on the Mac). Run it again if you move the folder.
+# The shortcuts run the code straight from this folder. Run it again if you move the folder.
 #   powershell -ExecutionPolicy Bypass -File setup.ps1
 $ErrorActionPreference = "Stop"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path

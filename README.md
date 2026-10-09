@@ -346,7 +346,7 @@ A black pill at the bottom of the screen, Siri style: the Siri wave while she li
 
 ### Starting with Windows
 
-Settings > Start when I sign in (on here) adds Hey Jev to what Windows starts when you sign in, minimised to the taskbar. Then she welcomes you the way JARVIS welcomes Tony home in Iron Man 2, with the time and the weather: "Welcome home, Sam. It's 2:27 in the afternoon, 33 degrees and mostly clear outside. Anything you'd like me to do?" When you come back to the laptop after it was locked or asleep for a minute or more, it's "Welcome back, Sam.", with only what needs you: who messaged while you were away, the battery if it's under 30 percent and not charging, the C drive if it's nearly full. Just answer, no "Hey Jev" needed. The name and Say hello are in Settings too. It also shows in Task Manager > Startup apps.
+Settings > Start when I sign in (off until you tick it) adds Hey Jev to what Windows starts when you sign in, minimised to the taskbar. Then she welcomes you the way JARVIS welcomes Tony home in Iron Man 2, with the time and the weather: "Welcome home, Sam. It's 2:27 in the afternoon, 33 degrees and mostly clear outside. Anything you'd like me to do?" When you come back to the laptop after it was locked or asleep for a minute or more, it's "Welcome back, Sam.", with only what needs you: who messaged while you were away, the battery if it's under 30 percent and not charging, the C drive if it's nearly full. Just answer, no "Hey Jev" needed. The name and Say hello are in Settings too. It also shows in Task Manager > Startup apps.
 
 ### Teaching her your apps
 

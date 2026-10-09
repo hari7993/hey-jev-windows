@@ -1,4 +1,4 @@
-"""Windows versions of everything the Mac build did with AppleScript, afplay, pbcopy and pmset."""
+"""Everything Windows-specific: windows and apps, sounds, the clipboard, power, the registry and media controls."""
 import asyncio
 import contextlib
 import ctypes
@@ -60,7 +60,7 @@ os.makedirs(LOG_DIR, exist_ok=True)
 
 
 def log_path(name):
-    """Where the Mac build used ~/Library/Logs/<name>."""
+    """Where a log file goes: <name> in %LOCALAPPDATA%\\Hey Jev\\Logs."""
     return os.path.join(LOG_DIR, name)
 
 
@@ -179,7 +179,7 @@ def _com():
 # --------------------------------------------------------------------------- sounds
 MEDIA_DIR = os.path.join(os.environ.get("SystemRoot", r"C:\Windows"), "Media")
 SOUNDS = {"wake": "Speech On.wav", "dictate_start": "Speech On.wav", "dictate_stop": "Speech Off.wav",
-          "timer": "Windows Notify Calendar.wav"}  # stand-ins for the Mac's Tink, Pop and Glass
+          "timer": "Windows Notify Calendar.wav"}  # short Windows sounds for each kind of chime
 
 
 def play(path, write=None):
@@ -606,7 +606,7 @@ def open_app(app, wait=8.0):
 def focus_app(app):
     windows = app_windows(app)
     if not windows:
-        return open_app(app)  # AppleScript's activate launches it too
+        return open_app(app)  # not running yet: switching to it means starting it
     bring_to_front(windows[0])
 
 
@@ -1120,7 +1120,7 @@ _mutex = []
 
 
 def single_instance(name="HeyJevSingleInstance"):
-    """False if Jev is already running, the way a Mac app only ever opens once."""
+    """False if Jev is already running, so only one of her ever listens."""
     handle = kernel32.CreateMutexW(None, False, f"Local\\{name}")
     already = ctypes.get_last_error() == 183  # ERROR_ALREADY_EXISTS
     _mutex.append(handle)

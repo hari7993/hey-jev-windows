@@ -1,4 +1,4 @@
-"""Window and model settings, saved to %APPDATA%\\Hey Jev\\settings.json (the Mac build used NSUserDefaults)."""
+"""Window and model settings, saved to %APPDATA%\\Hey Jev\\settings.json."""
 import json
 import os
 import threading

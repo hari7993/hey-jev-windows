@@ -4004,7 +4004,7 @@ def media(action):
             win.press(*VLC_KEYS[action])
             return
     if session:
-        # Spotify takes "previous" a few seconds into a song as back to its start, so it gets it twice, as on the Mac
+        # Spotify takes "previous" a few seconds into a song as back to its start, so it gets it twice
         try:
             twice = action == "previous" and "spotify" in str(session.source_app_user_model_id or "").lower() \
                 and win.media_position(session) > 3
