@@ -88,7 +88,7 @@ def soul():
 
 
 LAST_QUERY = [""]  # the last YouTube search, for "play the first video" with nothing named
-FOCUS = {"app": "", "at": 0.0}  # Alfred's useful idea: the app just opened owns the next sentence
+FOCUS = {"app": "", "at": 0.0}  # the app just opened owns the next sentence
 
 
 def note_focus(app):
@@ -143,7 +143,7 @@ def reload_keys(names=KEY_NAMES):
 # How "Jev" comes out of speech-to-text. These spellings aren't real words, so they count anywhere in a phrase.
 # Parakeet also writes it as real names ("Hey Joe", "Hey Jim" and "Hey Ju" on this PC, Jeff for Windows' voices).
 # Those count after "hey", "hello" and so on, or at the start the way you'd call someone: "Jeff, open Chrome".
-# Jarvis is a real second name for her (picked from Alfred): uncommon enough to count anywhere, like Jev.
+# Jarvis is a real second name for her: uncommon enough to count anywhere, like Jev.
 STRONG = "jev|jevs|jeve|jeev|jeeve|jeevs|gev|chev|jiv|jav|jarvis|jervis"
 WEAK = "jeff|jeffs|jef|jeb|jet|jeth|jill|jil|joe|jo|jim|ju|jive|doo"
 NAMES = f"{STRONG}|{WEAK}"
@@ -249,7 +249,7 @@ def route(text, kind, open_mic=None, strict=False):
     if kind == "follow_up" and strict and not (CARRY_ON.match(words_of(text)) or answering()):
         kind = "other"  # not carrying on, nor answering her: as if said without her name
     if kind == "other":
-        # Alfred's call-aware idea, on Windows: almost everything you say on a call is for the other person. The
+        # On a call almost everything you say is for the other person. The
         # name was checked above, so "Jev, mute" and "Jarvis, open Notepad" still work.
         if settings.get("call_aware") and win.call_apps():
             return None
@@ -1691,7 +1691,7 @@ def _local_clause(t):
 
 
 def local_compound(t):
-    """Alfred's useful local compounds, conservatively: open/new-tab then another known action. If typing starts,
+    """Common two-part commands done on the PC, conservatively: open/new-tab then another known action. If typing starts,
     everything after it is literal text, including "and", except a final "and press Enter" handled by _literal."""
     # "type hello in a new tab": the destination is an instruction, not part of the text
     new = re.fullmatch(r"open (notepad) and (?:type|write) (.+?) (?:in|on) (?:a )?new tab", t, re.I)
@@ -4955,7 +4955,7 @@ def voice_like(heard_text, sentence):
     return bool(want) and len(want & got) >= len(want) / 2
 
 
-# Alfred's measured Indian-English slips for "type". Only nonsense words, and only in a command-verb slot; never
+# Indian-English speech-to-text slips for "type". Only nonsense words, and only in a command-verb slot; never
 # touch real words or anything after type/write, because that's the user's literal text.
 VERB_HEARD = {"daye": "type", "taeya": "type", "daeep": "type", "dayeb": "type", "diyeb": "type",
               "dayap": "type", "diyap": "type", "diap": "type", "dipe": "type"}

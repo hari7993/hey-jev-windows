@@ -92,17 +92,14 @@ Nemotron also costs more CPU while anyone in the room talks: about 2.3 cores at 
 
 Smart Turn v3.2 is Pipecat's (BSD 2-clause), 8 MB, run by onnxruntime, and downloads once. Nemotron ASR Streaming 0.6B is NVIDIA's (NVIDIA Open Model License), 460 MB, downloaded only if you pick it.
 
-### Ideas from Alfred computer-use
-
-Hey Jev borrows the best applicable ideas from [zisshh/computer-use](https://github.com/zisshh/computer-use) (MIT), reimplemented for Windows rather than copying its Mac actions:
+### Calls, follow-ups and quick commands
 
 - **Call-aware:** while WhatsApp, Teams, Zoom, Discord or a browser has the mic for a call, unnamed speech is held back. Say **Jev** or **Jarvis** and she still acts. Windows' microphone privacy registry is checked in about 1 ms and cached for 2 seconds (`winplatform.call_apps`).
 - **The app owns the next sentence:** after opening YouTube, "search for Sam Sulek" searches YouTube, not Google. The app asked for wins for 10 seconds while its window comes forward (`FOCUS`).
 - **Local page choices where reliable:** after a search she can play the first through fifth ordinary YouTube result from the result list she fetched herself, with no screenshot or answer-model call.
 - **Local compounds:** "open Notepad and type hello", "new tab and open YouTube", and "type hello and press Enter" become fixed steps on the PC (in a chat app she won't press Enter, since that would send). A request to compose a mail, poem or message, or to fill something in like today's date, still goes to the answer model. Unnamed typing first goes through the is-it-for-her decision.
-- **Accent slips:** the measured nonsense spellings of "type" from Alfred (`diap`, `dayeb`, and similar) are repaired only in a command-verb position. Real words and the text to type are never changed. This PC's own "prone" for Chrome, "clone the tab" and "new term" are fixed too.
+- **Accent slips:** nonsense spellings of "type" that Indian-English speech-to-text writes (`diap`, `dayeb`, and similar) are repaired only in a command-verb position. Real words and the text to type are never changed. This PC's own "prone" for Chrome, "clone the tab" and "new term" are fixed too.
 
-Not adopted: Apple's echo canceller (Windows speech mode already removes this PC's playback); Ghostty/Apple Accessibility code; early execution while a sentence is still being spoken ("open Chrome—no, don't" must not open it); and page clicking by visible text. A read-only Windows UI Automation probe saw Chrome's tabs and toolbar in 69 ms but not the web document, so the existing screenshot vision remains the reliable Windows path. Messaging is deliberately a separate feature because sending to the wrong person needs confirmation and post-send checks.
 
 ### Is it for her?
 
