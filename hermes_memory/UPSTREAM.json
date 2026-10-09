@@ -1,0 +1,223 @@
+{
+ "repo": "https://github.com/NousResearch/hermes-agent",
+ "commit": "3569fba6a686e17f9208da7500de8bd20b4c82f9",
+ "files": [
+  {
+   "to": "memory_store.py",
+   "from": "tools/memory_tool_store.py",
+   "rewrite": [
+    [
+     "from utils import atomic_write_text",
+     "from ._compat import atomic_write_text"
+    ],
+    [
+     "from tools.threat_patterns import",
+     "from .threat_patterns import"
+    ],
+    [
+     "logging.getLogger(\"tools.memory_tool\")",
+     "logging.getLogger(\"hermes_memory\")"
+    ],
+    [
+     "from hermes_constants import mkdir_under_hermes_home",
+     "from ._compat import mkdir_under_hermes_home"
+    ],
+    [
+     "from tools import memory_tool as _mt",
+     "from . import _compat as _mt"
+    ],
+    [
+     "from tools import memory_tool  #",
+     "from . import _compat as memory_tool  #"
+    ]
+   ]
+  },
+  {
+   "to": "threat_patterns.py",
+   "from": "tools/threat_patterns.py",
+   "rewrite": []
+  },
+  {
+   "to": "skill_usage.py",
+   "from": "tools/skill_usage.py",
+   "rewrite": [
+    [
+     "from hermes_constants import get_hermes_home",
+     "from ._compat import get_hermes_home"
+    ],
+    [
+     "from agent.skill_utils import",
+     "from .hermes_bits import"
+    ],
+    [
+     "from utils import atomic_write_text",
+     "from ._compat import atomic_write_text"
+    ]
+   ]
+  },
+  {
+   "to": "curator.py",
+   "from": "agent/curator.py",
+   "rewrite": [
+    [
+     "from hermes_constants import get_hermes_home",
+     "from ._compat import get_hermes_home"
+    ],
+    [
+     "from agent.skill_utils import get_disabled_skill_names",
+     "from ._compat import get_disabled_skill_names"
+    ],
+    [
+     "from tools import skill_usage as _u",
+     "from . import skill_usage as _u"
+    ],
+    [
+     "from tools import skill_usage\n",
+     "from . import skill_usage\n"
+    ],
+    [
+     "from utils import atomic_json_write",
+     "from ._compat import atomic_json_write"
+    ]
+   ]
+  },
+  {
+   "to": "hermes_bits.py",
+   "doc": "Pieces of Hermes Agent Hey Jev uses on their own: finding skills, the 60-character skill descriptions, its\nsearch query cleaner and its OR-relaxed retry (history.py), and its learning review's rules (siri.LEARN).",
+   "imports": "import os\nimport re\nfrom pathlib import Path, PurePath\nfrom typing import Any, Dict, List, Optional, Tuple\n\nfrom ._compat import get_all_skills_dirs, get_disabled_skill_names, is_external_skill_path  # noqa: F401, skill_usage.py imports them from here",
+   "extract": [
+    {
+     "from": "agent/skill_utils.py",
+     "names": [
+      "EXCLUDED_SKILL_DIRS",
+      "SKILL_SUPPORT_DIRS",
+      "is_excluded_skill_path",
+      "is_skill_support_path",
+      "iter_skill_index_files",
+      "SKILL_PROMPT_DESC_LIMIT",
+      "_normalize_skill_description",
+      "extract_skill_description"
+     ]
+    },
+    {
+     "from": "hermes_state_common.py",
+     "names": [
+      "MAX_FTS5_QUERY_CHARS"
+     ]
+    },
+    {
+     "from": "hermes_state_search.py",
+     "names": [
+      "_FTS5_SPECIAL_CHARS",
+      "_FTS5_SPECIAL_RE",
+      "_FTS_OPERATORS",
+      "_LIKE_TOKEN_RE",
+      "_QUOTED_PHRASE_RE",
+      "_CJK_RANGES",
+      "_is_cjk",
+      "_non_operator_tokens",
+      "_quote_fts_tokens",
+      "SessionSearchMixin._contains_cjk",
+      "SessionSearchMixin._sanitize_fts5_query",
+      "SessionSearchMixin._or_relaxed_query"
+     ],
+     "rewrite": [
+      [
+       "SessionSearchMixin._contains_cjk(",
+       "_contains_cjk("
+      ]
+     ]
+    },
+    {
+     "from": "agent/background_review.py",
+     "names": [
+      "_MEMORY_ROUTING_BLOCK",
+      "_LESSON_LAYER_BLOCK",
+      "_DO_NOT_CAPTURE_BLOCK"
+     ]
+    }
+   ]
+  },
+  {
+   "to": "gateway_bits.py",
+   "doc": "Pieces of Hermes Agent's messaging gateway Hey Jev uses for Telegram (telegram_bot.py): its pairing rules and\ncode hashing (gateway/pairing.py), and its long-message splitting that counts what Telegram counts and keeps code\nblocks whole (gateway/platforms/base.py, helpers.py).",
+   "imports": "import hashlib\nfrom typing import Callable, List, Optional",
+   "extract": [
+    {
+     "from": "gateway/pairing.py",
+     "names": [
+      "ALPHABET",
+      "CODE_LENGTH",
+      "CODE_TTL_SECONDS",
+      "LOCKOUT_SECONDS",
+      "MAX_FAILED_ATTEMPTS",
+      "PairingStore._hash_code"
+     ]
+    },
+    {
+     "from": "gateway/platforms/helpers.py",
+     "names": [
+      "fence_state_after"
+     ]
+    },
+    {
+     "from": "gateway/platforms/base.py",
+     "names": [
+      "utf16_len",
+      "_custom_unit_to_cp",
+      "BasePlatformAdapter.truncate_message"
+     ]
+    }
+   ]
+  },
+  {
+   "to": "acp_bits.py",
+   "doc": "Pieces of Hermes Agent's ACP client (agent/copilot_acp_client.py) Hey Jev uses to drive the OpenCode CLI in\ncoder.py: its JSON-RPC replies, and picking the session's model from the ones it offers.",
+   "imports": "from typing import Any",
+   "extract": [
+    {
+     "from": "agent/copilot_acp_client.py",
+     "names": [
+      "_jsonrpc_result",
+      "_jsonrpc_error",
+      "_enabled_id_list",
+      "_model_config_option",
+      "_session_model_ids",
+      "_legacy_session_model_ids",
+      "_model_selection_request"
+     ]
+    }
+   ]
+  },
+  {
+   "to": "voice_bits.py",
+   "doc": "Pieces of Hermes Agent's voice mode Hey Jev uses while she talks (tools/voice_mode_transcript.py,\ntools/tts_streaming.py): whole-utterance stop phrases, her own words heard back (the TTS echo guard), and the\nnote that you cut her off.",
+   "imports": "import difflib\nimport re\nimport time\nfrom contextlib import suppress\nfrom typing import Optional",
+   "extract": [
+    {
+     "from": "tools/voice_mode_transcript.py",
+     "names": [
+      "_voice_config",
+      "DEFAULT_VOICE_STOP_PHRASES",
+      "_load_voice_stop_phrases",
+      "is_voice_stop_phrase",
+      "DEFAULT_TTS_ECHO_SIMILARITY_THRESHOLD",
+      "MIN_FRAGMENT_LENGTH_FOR_ECHO",
+      "_normalize_for_echo_compare",
+      "is_tts_echo"
+     ]
+    },
+    {
+     "from": "tools/tts_streaming.py",
+     "names": [
+      "SPEECH_INTERRUPTED_NOTE",
+      "_INTERRUPT_TTL_S",
+      "_interrupted_at",
+      "mark_speech_interrupted",
+      "take_speech_interrupted"
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+# the basics: web requests, .env, audio arrays, the mic and wav files, keyboard and mouse
+requests==2.34.2
+python-dotenv==1.2.4
+numpy==2.5.3
+sounddevice==0.5.6
+soundfile==0.14.0
+pynput==1.8.2
+# speech on this PC: Nemotron (streaming) and Parakeet through sherpa-onnx, Silero VAD and Smart Turn through
+# onnxruntime, Whisper as the slower option in Settings
+sherpa-onnx==1.13.8
+onnxruntime==1.30.0
+faster-whisper==1.2.1
+# Windows: Credential Manager, volume mixer, process list and media controls
+keyring==25.7.0
+pycaw==20260927
+psutil==7.2.2
+winrt-runtime==3.2.1
+winrt-Windows.Foundation==3.2.1
+winrt-Windows.Foundation.Collections==3.2.1
+winrt-Windows.Media.Control==3.2.1
+# Jev on your phone (telegram_bot.py): the library Hermes Agent pins, LGPL-3.0, only httpx besides
+python-telegram-bot==22.8
